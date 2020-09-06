@@ -15,7 +15,7 @@ body{
 
 .about-section{
     background: url(maxresdefault.jpg) no-repeat left;
-    background-size: 80%;
+    background-size: 70%;
     background-color: #fdfdfd;
     overflow: hidden;
     padding: 100px 0;
@@ -77,7 +77,7 @@ body{
 .footer {
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 10;
     width: 100%;
     background-color: white;
     color: black;
