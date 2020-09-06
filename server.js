@@ -2,6 +2,21 @@ let express = require ('express')
 let mongodb = require('mongodb')
 let sanitizeHTML = require('sanitize-html')
 
+var fs = require ('fs');
+
+
+function onReques(request, respone) {
+respone.writeHead(200,{'Content-Type': 'text/plain'});
+fs.readFile('/About.html',null, function(error, data){
+  if (error){
+    respone.writeHead(404);
+    respone.write('file not found');
+  } else {
+    respone.write(data);
+  }
+  respone.end();
+});
+}
 
 let app = express()
 let db
@@ -46,6 +61,22 @@ app.get('/',  function(req, res) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple To-Do App</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: black;
+   text-align: center;
+}
+</style>
+
+<style>
+.black-background {background-color:#000000;}
+.white {color:#ffffff;}
+</style>
   </head>
   <body>
   <div class="container">
@@ -68,22 +99,19 @@ app.get('/',  function(req, res) {
   <script>
   let items = ${JSON.stringify(items)}
   </script>
-
+ 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/browser.js"></script>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <footer>
-  <p>Created By: Nathan</p>
 
-</footer>
+
+  <div class="footer">
+  <p><a href="About.html" style="color:black">About Me</a> <br> Created By Nathan</p>
+  </div>
+  
   </body>
   </html>`)
+
+  
   })
 })
 
